@@ -55,28 +55,24 @@ export const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Dropdown */}
       <div
-        className={`fixed inset-0 bg-garnish-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center space-y-8 transition-transform duration-500 md:hidden ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`absolute top-full left-0 w-full bg-garnish-dark border-b border-garnish-green/30 md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        {navItems.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="font-serif text-3xl italic text-stone-200 hover:text-garnish-gold transition-colors"
-          >
-            {item.label}
-          </a>
-        ))}
-        <button 
-          onClick={() => setIsMobileMenuOpen(false)}
-          className="absolute top-8 right-8 text-stone-400"
-        >
-          <X size={32} />
-        </button>
+        <div className="flex flex-col py-6 px-6 space-y-6">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="font-sans text-lg tracking-[0.15em] uppercase text-stone-300 hover:text-garnish-gold transition-colors duration-300 py-2 border-b border-garnish-green/20 last:border-0"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
       </div>
     </nav>
   );
